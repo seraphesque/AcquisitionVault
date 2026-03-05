@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acquisition Vault — Business Acquisition Financing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #0D1B2A;
+    --navy2:  #152234;
+    --navy3:  #1E2F42;
+    --red:    #C0392B;
+    --red2:   #E04535;
+    --gold:   #E8A020;
+    --white:  #F4F4F2;
+    --gray:   #8A9BB0;
+    --light:  #C8D6E5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ───────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    background: rgba(13,27,42,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(192,57,43,0.25);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--red2); }
+
+  .nav-cta {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 10px 24px;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--red2) !important; color: var(--white) !important; }
+
+  /* ── HERO ──────────────────────────────────────── */
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(192,57,43,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192,57,43,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridPan 20s linear infinite;
+  }
+  @keyframes gridPan {
+    0%   { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192,57,43,0.18) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1100px;
+  }
+
+  .hero-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-label::before {
+    content: '';
+    display: block; width: 40px; height: 2px;
+    background: var(--red);
+  }
+
+  .hero-h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 9vw, 130px);
+    line-height: 0.92;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.9s 0.35s forwards;
+  }
+  .hero-h1 .accent { color: var(--red); }
+  .hero-h1 .outline {
+    -webkit-text-stroke: 2px var(--white);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--light);
+    line-height: 1.65;
+    max-width: 600px;
+    margin-bottom: 52px;
+    opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.9s 0.65s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 18px 38px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    border: 2px solid var(--red);
+  }
+  .btn-primary:hover { background: var(--red2); border-color: var(--red2); transform: translateY(-2px); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent;
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 18px 38px;
+    border-radius: 2px;
+    text-decoration: none;
+    border: 2px solid rgba(200,214,229,0.35);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--white); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 0;
+    margin-top: 80px;
+    border-top: 1px solid rgba(200,214,229,0.12);
+    padding-top: 40px;
+    opacity: 0; animation: fadeUp 0.9s 0.8s forwards;
+  }
+  .stat {
+    flex: 1;
+    padding-right: 40px;
+    border-right: 1px solid rgba(200,214,229,0.12);
+    margin-right: 40px;
+  }
+  .stat:last-child { border-right: none; margin-right: 0; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION SHARED ────────────────────────────── */
+  section { padding: 100px 48px; }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    display: block; width: 30px; height: 2px;
+    background: var(--red);
+  }
+
+  .section-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: 0.95;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .section-intro {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--light);
+    line-height: 1.7;
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
+
+  .max-w { max-width: 1200px; margin: 0 auto; }
+
+  /* ── ABOUT ─────────────────────────────────────── */
+  #about { background: var(--navy2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-left .big-quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 58px);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+  .about-left .big-quote .red { color: var(--red); }
+
+  .about-body {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--light);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  .credential-bar {
+    display: flex; flex-direction: column; gap: 16px;
+    margin-top: 48px;
+  }
+  .credential {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 24px;
+    background: var(--navy3);
+    border-left: 3px solid var(--red);
+    border-radius: 0 2px 2px 0;
+  }
+  .credential-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .credential-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.4;
+  }
+  .credential-text span {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+
+  .about-right {
+    position: relative;
+  }
+  .about-card {
+    background: var(--navy3);
+    border: 1px solid rgba(192,57,43,0.2);
+    border-radius: 4px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::before {
+    content: '\201C';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 200px;
+    color: rgba(192,57,43,0.08);
+    position: absolute;
+    top: -20px; left: 20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .about-card-quote {
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--light);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .about-card-attr {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  /* ── SERVICES ──────────────────────────────────── */
+  #services { background: var(--navy); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 16px;
+  }
+
+  .service-card {
+    background: var(--navy2);
+    padding: 44px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .service-card:hover { background: var(--navy3); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: rgba(192,57,43,0.12);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .service-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .service-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+  .service-body {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--light);
+    line-height: 1.7;
+  }
+  .service-tag {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid rgba(192,57,43,0.35);
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  /* ── GUIDE ─────────────────────────────────────── */
+  #guide {
+    background: var(--navy2);
+    position: relative;
+    overflow: hidden;
+  }
+  #guide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(192,57,43,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192,57,43,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .guide-inner {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .guide-mockup {
+    background: linear-gradient(135deg, var(--navy3), var(--navy));
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: 4px;
+    padding: 48px 40px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .guide-mockup::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: 0; right: 0;
+    height: 4px;
+    background: var(--red);
+    border-radius: 4px 4px 0 0;
+  }
+  .guide-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+  }
+  .guide-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .guide-chapters {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 32px;
+  }
+  .guide-chapter {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px;
+    color: var(--light);
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 2px;
+  }
+  .guide-chapter-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--red);
+    min-width: 24px;
+  }
+  .guide-badge {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  .guide-right .section-intro { margin-bottom: 36px; }
+
+  .guide-perks {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 40px;
+  }
+  .guide-perk {
+    display: flex; align-items: flex-start; gap: 14px;
+    font-size: 15px;
+    color: var(--light);
+    line-height: 1.5;
+  }
+  .guide-perk-check {
+    color: var(--red);
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── BOOK A CALL ───────────────────────────────── */
+  #book {
+    background: var(--red);
+    position: relative;
+    overflow: hidden;
+  }
+  #book::before {
+    content: 'BOOK';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 400px;
+    color: rgba(0,0,0,0.08);
+    position: absolute;
+    right: -40px; top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .book-inner {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .book-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 90px);
+    line-height: 0.92;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .book-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .book-points {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 48px;
+  }
+  .book-point {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+  }
+  .book-point::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--white);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--white);
+    color: var(--red);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 20px 44px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid var(--white);
+  }
+  .btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+
+  .book-right {
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+    padding: 48px;
+    backdrop-filter: blur(8px);
+  }
+  .book-right-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 28px;
+  }
+  .book-step {
+    display: flex; gap: 20px;
+    margin-bottom: 28px;
+  }
+  .book-step:last-child { margin-bottom: 0; }
+  .book-step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: rgba(255,255,255,0.25);
+    line-height: 1;
+    min-width: 32px;
+  }
+  .book-step-body { padding-top: 2px; }
+  .book-step-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .book-step-text {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ────────────────────────────────────── */
+  footer {
+    background: #080F18;
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-top: 1px solid rgba(192,57,43,0.2);
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--red); }
+  .footer-copy {
+    font-size: 13px;
+    color: var(--gray);
+  }
+  .footer-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+  .footer-links a {
+    font-size: 13px;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--red); }
+
+  /* ── DIVIDER STRIP ─────────────────────────────── */
+  .strip {
+    height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--navy3), var(--red));
+  }
+
+  /* ── SCROLL REVEAL ─────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE ────────────────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    section { padding: 72px 24px; }
+    #home { padding: 100px 24px 60px; }
+    .about-grid, .guide-inner, .book-inner { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: column; gap: 28px; }
+    .stat { border-right: none; margin-right: 0; padding-right: 0;
+            border-bottom: 1px solid rgba(200,214,229,0.12); padding-bottom: 28px; }
+    .stat:last-child { border-bottom: none; }
+    footer { flex-direction: column; text-align: center; padding: 36px 24px; }
+    .footer-links { justify-content: center; }
+    #book::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Acquisition<span>Vault</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#guide">Free Guide</a></li>
+    <li><a href="#book" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-label">Business Acquisition Financing</div>
+    <h1 class="hero-h1">
+      Don't Build.<br>
+      <span class="outline">Buy.</span><br>
+      <span class="accent">Get Funded.</span>
+    </h1>
+    <p class="hero-sub">
+      We help ambitious buyers secure SBA 7(a) financing, investor capital,
+      and seller financing to close business acquisitions — from first deal to closing table.
+    </p>
+    <div class="hero-ctas">
+      <a href="#book" class="btn-primary">
+        Book a Free Strategy Call
+        <span>→</span>
+      </a>
+      <a href="#guide" class="btn-secondary">
+        Get the Free Buyer's Guide
+        <span>↓</span>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Healthcare businesses<br>acquired before age 21</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">90%</div>
+        <div class="stat-label">Of your purchase price<br>covered by SBA 7(a)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$10T</div>
+        <div class="stat-label">In U.S. businesses<br>changing hands this decade</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$5M</div>
+        <div class="stat-label">Maximum SBA 7(a)<br>loan amount</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="max-w">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="section-label">Our Story</div>
+        <div class="big-quote">
+          I bought my first business at <span class="red">19.</span><br>
+          Three deals closed<br>before I turned <span class="red">21.</span>
+        </div>
+        <p class="about-body">
+          All healthcare businesses. All financed with SBA 7(a) loans. None built from scratch —
+          and none funded with my own money. I learned the hard way that most buyers don't fail
+          because they find bad deals. They fail because no one shows them how to finance them.
+        </p>
+        <p class="about-body">
+          Acquisition Vault was built to fix that. We give buyers the education, the structure,
+          and the lender relationships they need to close — without spending years figuring it
+          out alone.
+        </p>
+        <div class="credential-bar">
+          <div class="credential">
+            <span class="credential-icon">🏥</span>
+            <div class="credential-text">
+              3 Healthcare Business Acquisitions
+              <span>SBA 7(a) financed — closed before age 21</span>
+            </div>
+          </div>
+          <div class="credential">
+            <span class="credential-icon">🏦</span>
+            <div class="credential-text">
+              SBA Preferred Lender Network
+              <span>Direct relationships with acquisition-focused lenders</span>
+            </div>
+          </div>
+          <div class="credential">
+            <span class="credential-icon">💼</span>
+            <div class="credential-text">
+              HNW Investor Access
+              <span>Capital network for equity gaps and deal financing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right reveal">
+        <div class="about-card">
+          <p class="about-card-quote">
+            "Most buyers don't fail because they can't find a good deal.
+            They fail because nobody showed them how to get it funded.
+            That's exactly what we fix."
+          </p>
+          <div class="about-card-attr">— Founder, Acquisition Vault</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="max-w">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-h2 reveal">End-to-End<br>Acquisition Support</h2>
+    <p class="section-intro reveal">
+      From understanding how SBA financing works to sitting at the closing table —
+      we're with you every step of the way.
+    </p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <span class="service-icon">📚</span>
+        <div class="service-title">Acquisition Education</div>
+        <p class="service-body">
+          Learn our proven framework for finding, evaluating, and structuring deals.
+          Understand what makes a business fundable before you ever approach a lender.
+        </p>
+        <span class="service-tag">Foundation</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <span class="service-icon">📋</span>
+        <div class="service-title">Deal Package Prep</div>
+        <p class="service-body">
+          We help you build a complete, lender-ready package — LOI, financials,
+          SDE analysis, buyer bio, and business plan — engineered to get approvals.
+        </p>
+        <span class="service-tag">Critical</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <span class="service-icon">🏦</span>
+        <div class="service-title">SBA Lender Matching</div>
+        <p class="service-body">
+          We connect you with SBA Preferred Lenders who specialize in your deal type
+          and industry. Our introductions open doors that cold outreach simply doesn't.
+        </p>
+        <span class="service-tag">Exclusive Access</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <span class="service-icon">💰</span>
+        <div class="service-title">Investor Capital Access</div>
+        <p class="service-body">
+          For qualified buyers with a deal in hand, we provide access to our HNW investor
+          network — actively looking to deploy capital into acquisition deals.
+        </p>
+        <span class="service-tag">HNW Network</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <span class="service-icon">⚙️</span>
+        <div class="service-title">Underwriting Support</div>
+        <p class="service-body">
+          We stay in your deal through underwriting — helping you respond to lender
+          questions, manage stall points, and keep momentum all the way to close.
+        </p>
+        <span class="service-tag">Hands-On</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">06</div>
+        <span class="service-icon">🤝</span>
+        <div class="service-title">Closing Coordination</div>
+        <p class="service-body">
+          We work alongside your attorney through commitment letter to funding day —
+          so nothing falls through the cracks at the most important moment of the deal.
+        </p>
+        <span class="service-tag">Full Service</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip"></div>
+
+<!-- FREE GUIDE -->
+<section id="guide">
+  <div class="max-w">
+    <div class="guide-inner">
+      <div class="guide-mockup reveal">
+        <div class="guide-brand">Acquisition Vault</div>
+        <div class="guide-title">The SBA 7(a)<br>Acquisition Funding<br>Blueprint</div>
+        <div class="guide-chapters">
+          <div class="guide-chapter">
+            <span class="guide-chapter-num">01</span>
+            Why Buying Beats Building
+          </div>
+          <div class="guide-chapter">
+            <span class="guide-chapter-num">02</span>
+            How the SBA 7(a) Loan Works
+          </div>
+          <div class="guide-chapter">
+            <span class="guide-chapter-num">03</span>
+            Stacking Your Financing
+          </div>
+          <div class="guide-chapter">
+            <span class="guide-chapter-num">04</span>
+            What Lenders Look For
+          </div>
+          <div class="guide-chapter">
+            <span class="guide-chapter-num">05</span>
+            Building Your Deal Package
+          </div>
+          <div class="guide-chapter">
+            <span class="guide-chapter-num">06</span>
+            Finding the Right Lender
+          </div>
+          <div class="guide-chapter">
+            <span class="guide-chapter-num">07</span>
+            Navigating Due Diligence
+          </div>
+        </div>
+        <span class="guide-badge">Free Download</span>
+      </div>
+      <div class="guide-right reveal">
+        <div class="section-label">Free Buyer's Guide</div>
+        <h2 class="section-h2">The Blueprint<br>We Wish We Had</h2>
+        <p class="section-intro">
+          Everything we learned closing SBA-financed acquisitions — distilled into one
+          comprehensive guide. Free when you book a strategy call.
+        </p>
+        <div class="guide-perks">
+          <div class="guide-perk">
+            <span class="guide-perk-check">✓</span>
+            How to structure a deal so lenders say yes — not maybe
+          </div>
+          <div class="guide-perk">
+            <span class="guide-perk-check">✓</span>
+            The capital stack that gets buyers in for as little as 5–10% out of pocket
+          </div>
+          <div class="guide-perk">
+            <span class="guide-perk-check">✓</span>
+            DSCR explained — and how to calculate it before you approach any lender
+          </div>
+          <div class="guide-perk">
+            <span class="guide-perk-check">✓</span>
+            The 12-item deal package checklist lenders actually want to see
+          </div>
+          <div class="guide-perk">
+            <span class="guide-perk-check">✓</span>
+            The most common reasons deals get declined — and how to avoid every one
+          </div>
+          <div class="guide-perk">
+            <span class="guide-perk-check">✓</span>
+            How to vet and approach SBA Preferred Lenders the right way
+          </div>
+        </div>
+        <a href="#book" class="btn-primary">
+          Book a Call — Get the Guide Free
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip"></div>
+
+<!-- BOOK A CALL -->
+<section id="book">
+  <div class="max-w">
+    <div class="book-inner">
+      <div class="book-left reveal">
+        <h2 class="book-h2">Let's Talk<br>About Your<br>Deal.</h2>
+        <p class="book-sub">
+          Book a free strategy call with our team. We'll walk through your situation,
+          your deal, and your financing options — and show you exactly what it would
+          take to get to the closing table.
+        </p>
+        <div class="book-points">
+          <div class="book-point">No pitch. No pressure. Just a real conversation.</div>
+          <div class="book-point">We'll send you the free Buyer's Guide immediately.</div>
+          <div class="book-point">30 minutes — we move fast and respect your time.</div>
+          <div class="book-point">Limited spots available — we work with select buyers.</div>
+        </div>
+        <a href="https://acquisitionvault.com/call" class="btn-white">
+          Book Your Free Call →
+        </a>
+      </div>
+      <div class="book-right reveal">
+        <div class="book-right-title">What Happens Next</div>
+        <div class="book-step">
+          <div class="book-step-num">1</div>
+          <div class="book-step-body">
+            <div class="book-step-title">Book Your Call</div>
+            <div class="book-step-text">
+              Choose a time that works for you. We'll send you the free Buyer's Guide
+              the moment you book — no waiting.
+            </div>
+          </div>
+        </div>
+        <div class="book-step">
+          <div class="book-step-num">2</div>
+          <div class="book-step-body">
+            <div class="book-step-title">Strategy Session</div>
+            <div class="book-step-text">
+              We review your deal, your buyer profile, and your financing options.
+              You'll leave with a clear picture of what's possible.
+            </div>
+          </div>
+        </div>
+        <div class="book-step">
+          <div class="book-step-num">3</div>
+          <div class="book-step-body">
+            <div class="book-step-title">Build Your Path</div>
+            <div class="book-step-text">
+              If we're a fit, we'll map out exactly how we'll support you from
+              deal package to lender submission to close.
+            </div>
+          </div>
+        </div>
+        <div class="book-step">
+          <div class="book-step-num">4</div>
+          <div class="book-step-body">
+            <div class="book-step-title">Close Your Deal</div>
+            <div class="book-step-text">
+              We stay with you all the way to the closing table — and beyond.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Acquisition<span>Vault</span></div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#guide">Free Guide</a></li>
+    <li><a href="#book">Book a Call</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Acquisition Vault. For informational purposes only. Not financial or legal advice.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}`
+        ? 'var(--red2)' : '';
+    });
+  });
+</script>
+</body>
+</html>
