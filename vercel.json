@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/call", "dest": "https://app.iclosed.io/e/acquisitionvault/consultation-call-acquisition-financing" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
+```
+
+5. Click **"Commit new file"**
+
+---
+
+**Step 2 — Wait 30 Seconds**
+Vercel will detect the new file and redeploy automatically. Then test `https://www.acquisitionvault.com/call` — it should redirect straight to your iClosed booking page.
+
+Your repository should now look like this:
+```
+acquisitionvault/
+├── index.html
+├── vercel.json
+└── README.md
